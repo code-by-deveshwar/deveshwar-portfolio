@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Deveshwar Zard — Portfolio
+==========================
 
-## Getting Started
+A modern, minimal, and highly interactive developer portfolio built with Next.js 15 + App Router, Tailwind v4, and framer‑motion. Includes a blog scaffold, SEO best practices, dark/light theme, and rich micro‑interactions.
 
-First, run the development server:
+Features
+- Hero with social actions, CTA, and cursor‑follow glow
+- Experience timeline with company logos, badges, and expandable details
+- Projects grid (home preview + full projects page) with tilt hover effect
+- Global header with animated active pill, scroll progress, mobile menu
+- Smooth page transitions (framer‑motion) and reveal‑on‑scroll
+- Dark/light theme with system preference (next‑themes) and toggle
+- SEO ready: OpenGraph/Twitter metadata, robots.txt, sitemap, JSON‑LD
+- Content driven by a single config file (`src/config/site.ts`)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Tech Stack
+- Next.js 15 (App Router), React 19
+- Tailwind CSS v4
+- framer-motion, next-themes, lucide-react
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Getting Started
+1) Install dependencies
+   npm install
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2) Run the dev server
+   npm run dev
+   Open http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3) Build
+   npm run build && npm start
 
-## Learn More
+Content & Configuration
+- Edit personal info, socials, experience, and projects in:
+  src/config/site.ts:1
+- Logos live under `public/logos`. Replace the placeholder SVGs with real assets.
+- Project images can go in `public/` and referenced from `site.projects[].image`.
 
-To learn more about Next.js, take a look at the following resources:
+Theming & Typography
+- Fonts: Plus Jakarta Sans (UI/headings), Inter (articles), JetBrains Mono (code).
+- Dark mode: toggle in header. Provided via `next-themes` with class strategy.
+- Color system: Tailwind CSS variables in `src/app/globals.css` with a warm light theme and accessible dark theme.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Micro‑interactions
+- Reveal on scroll: `src/components/motion/Reveal.tsx` (variants: fade-up, fade, zoom)
+- Tilt on cards: `src/components/motion/TiltCard.tsx`
+- Shimmer text: `src/components/motion/ShimmerText.tsx`
+- Cursor glow: `src/components/motion/MouseGlow.tsx` (prefers‑reduced‑motion respected)
+- Page transitions: `src/components/motion/PageTransition.tsx`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Pages
+- `/` — Home (Hero, Experience, Projects preview)
+- `/projects` — All projects grid (1/2/3 columns responsive)
+- `/blog` — Placeholder page (MDX can be added later)
 
-## Deploy on Vercel
+SEO
+- Metadata and JSON‑LD in `src/app/layout.tsx`
+- robots.txt at `src/app/robots.txt/route.ts`
+- sitemap at `src/app/sitemap.ts`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Replace example.com
+- Update the canonical domain in:
+  - `src/app/layout.tsx` → `metadataBase` and JSON‑LD url
+  - `src/app/robots.txt/route.ts`
+  - `src/app/sitemap.ts`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Accessibility
+- Keyboard focus styles, skip link, aria‑current/expanded attributes
+- Prefers‑reduced‑motion disables non‑essential animations
+
+Notes
+- Home page previews 4 projects. Add more on `/projects`.
+- To adjust motion, see corresponding components for `delay`, `maxTilt`, and `duration` props.
+
+License
+- Personal project. No license specified.

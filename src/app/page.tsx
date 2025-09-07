@@ -1,9 +1,13 @@
-import { Button } from "@/components/ui/button"
+import Hero from "@/components/Hero"
+import ExperienceTimeline from "@/components/ExperienceTimeline"
+import FooterProfile from "@/components/FooterProfile"
 
 export default function Home() {
   return (
-    <div>
-      <Button>Click me</Button>
-    </div>
+    <main>
+      <Hero />
+      <ExperienceTimeline />
+      <FooterProfile />
+    </main>
   )
 }
