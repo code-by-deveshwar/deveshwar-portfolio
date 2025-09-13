@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Reveal from "@/components/motion/Reveal"
 import TiltCard from "@/components/motion/TiltCard"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function ExperienceTimeline() {
   return (
@@ -70,10 +71,10 @@ export default function ExperienceTimeline() {
               <SectionHeader label="My Work" />
               <Link href="/projects" className="text-xs md:text-sm underline-slide">View all</Link>
             </div>
-            <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {site.projects.slice(0,4).map((p, i) => (
+            <div className="mt-4 grid grid-cols-2 sm:grid-cols-2 gap-4">
+              {site.projects.slice(0, 4).map((p, i) => (
                 <TiltCard key={i}>
-                  <ProjectTile title={p.title} subtitle={p.subtitle} image={p.image} />
+                  <ProjectTile title={p.title} subtitle={p.subtitle} image={p.image} href={p.href} fit={p.fit} aspect={p.aspect} slug={p.slug} />
                 </TiltCard>
               ))}
             </div>
@@ -84,16 +85,29 @@ export default function ExperienceTimeline() {
   )
 }
 
-function ProjectTile({ title, subtitle, image }: { title: string; subtitle?: string; image?: string }) {
-  return (
+function ProjectTile({ title, subtitle, image, href, slug, fit = "cover", aspect = "4 / 5" }: { title: string; subtitle?: string; image?: string; href?: string; slug?: string; fit?: "cover" | "contain"; aspect?: string }) {
+  const link = slug ? `/projects/${slug}` : href
+  const inner = (
     <div className="rounded-xl border bg-card p-4 card-hover">
-      <div className="aspect-[4/5] rounded-lg bg-accent/70 border flex items-center justify-center text-muted-foreground overflow-hidden">
-        <span className="text-xs">{image ? "Preview" : "Image"}</span>
+      <div className="relative rounded-lg bg-accent/70 border overflow-hidden" style={{ aspectRatio: aspect }}>
+        <Image
+          src={image || "/projects/placeholder.svg"}
+          alt={`${title} preview`}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className={fit === "contain" ? "object-contain p-2" : "object-cover"}
+        />
       </div>
       <div className="mt-3">
-        <p className="font-semibold underline-slide inline-block">{title}</p>
+        <p className="lg:font-semibold underline-slide inline-block text-sm lg:text-base ">{title}</p>
         {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
       </div>
     </div>
+  )
+
+  return link ? (
+    <Link href={link} className="block">{inner}</Link>
+  ) : (
+    inner
   )
 }

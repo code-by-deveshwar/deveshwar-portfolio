@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono, Inter } from "next/font/google";
 import ThemeProvider from "@/components/providers/ThemeProvider";
 import PageTransition from "@/components/motion/PageTransition";
+import GlobalUI from "@/components/GlobalUI";
 import Script from "next/script";
 import { site } from "@/config/site";
-import Header from "@/components/Header";
 import "./globals.css";
 
 const geistSans = Plus_Jakarta_Sans({
@@ -58,7 +58,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${interText.variable} antialiased`}>
         <a href="#content" className="sr-only focus:not-sr-only focus:absolute focus:m-4 focus:rounded focus:border focus:bg-background focus:px-3 focus:py-2">Skip to content</a>
         <ThemeProvider>
-          <Header />
+          <GlobalUI />
           <PageTransition>
             <main id="content">{children}</main>
           </PageTransition>

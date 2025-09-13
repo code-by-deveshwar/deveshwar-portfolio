@@ -3,6 +3,7 @@ import { site } from "@/config/site"
 import SectionHeader from "@/components/SectionHeader"
 import TiltCard from "@/components/motion/TiltCard"
 import Reveal from "@/components/motion/Reveal"
+import Image from "next/image"
 
 export const metadata = { title: "Projects" }
 
@@ -19,7 +20,7 @@ export default function ProjectsPage() {
         {site.projects.map((p, i) => (
           <Reveal key={i} delay={i * 40}>
             <TiltCard>
-              <ProjectCard title={p.title} subtitle={p.subtitle} image={p.image} href={p.href} />
+              <ProjectCard title={p.title} subtitle={p.subtitle} image={p.image} href={p.href} slug={p.slug} fit={p.fit} aspect={p.aspect} />
             </TiltCard>
           </Reveal>
         ))}
@@ -28,11 +29,17 @@ export default function ProjectsPage() {
   )
 }
 
-function ProjectCard({ title, subtitle, image, href }: { title: string; subtitle?: string; image?: string; href?: string }) {
+function ProjectCard({ title, subtitle, image, href, slug, fit = "cover", aspect = "4 / 5" }: { title: string; subtitle?: string; image?: string; href?: string; slug?: string; fit?: "cover" | "contain"; aspect?: string }) {
   const inner = (
     <div className="rounded-xl border bg-card p-4 card-hover">
-      <div className="aspect-[4/5] rounded-lg bg-accent/70 border flex items-center justify-center text-muted-foreground overflow-hidden">
-        <span className="text-xs">{image ? "Preview" : "Image"}</span>
+      <div className="relative rounded-lg bg-accent/70 border overflow-hidden" style={{ aspectRatio: aspect }}>
+        <Image
+          src={image || "/projects/placeholder.svg"}
+          alt={`${title} preview`}
+          fill
+          sizes="(max-width: 1024px) 50vw, 33vw"
+          className={fit === "contain" ? "object-contain p-2" : "object-cover"}
+        />
       </div>
       <div className="mt-3">
         <p className="font-semibold underline-slide inline-block">{title}</p>
@@ -41,10 +48,10 @@ function ProjectCard({ title, subtitle, image, href }: { title: string; subtitle
     </div>
   )
 
-  return href ? (
-    <Link href={href} className="block">{inner}</Link>
+  const link = slug ? `/projects/${slug}` : href
+  return link ? (
+    <Link href={link} className="block">{inner}</Link>
   ) : (
     inner
   )
 }
-
