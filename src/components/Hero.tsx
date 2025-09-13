@@ -31,9 +31,9 @@ export default function Hero() {
 
           <Reveal delay={220}>
             <div className="mt-6 flex items-center gap-6">
-              <Button className="rounded-full bg-neutral-900 text-white px-5 py-2.5 hover:bg-neutral-800 transition-transform will-change-transform active:scale-[0.98]">
+              {/* <Button className="rounded-full bg-neutral-900 text-white px-5 py-2.5 hover:bg-neutral-800 transition-transform will-change-transform active:scale-[0.98]">
                 Book a call
-              </Button>
+              </Button> */}
               <p className="max-w-[34ch] text-sm md:text-base text-muted-foreground">
                 Feel free to explore my portfolio and reach out — I&apos;d love to connect!
               </p>
