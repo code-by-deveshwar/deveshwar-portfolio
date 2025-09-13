@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server"
 
-export const revalidate = 60 * 60 * 24 // 24h
+// Use a numeric literal so Next can statically analyze the value
+export const revalidate = 86400 // 24h
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
@@ -44,8 +45,7 @@ export async function GET(req: NextRequest) {
         "Cache-Control": `public, s-maxage=${revalidate}, stale-while-revalidate=${revalidate}`,
       },
     })
-  } catch (e) {
+  } catch {
     return new Response(JSON.stringify({ error: "Failed to fetch preview" }), { status: 500 })
   }
 }
-

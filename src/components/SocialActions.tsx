@@ -12,9 +12,11 @@ type Item = {
 
 // Exact LinkedIn brand square icon (blue square with white "in")
 function LinkedInSquareIcon(props: React.SVGProps<SVGSVGElement>) {
+  const { className, ...rest } = props
   return (
-   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" data-supported-dps="24x24" fill="currentColor" className="mercado-match" width="50" height="35" focusable="false">
-      <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" className={className} {...rest}>
+      <rect x="2" y="2" width="20" height="20" rx="3" fill="#0A66C2" />
+      <path d="M7.04 9.25H5.1V18h1.94V9.25ZM6.07 5.99a1.13 1.13 0 1 0 0 2.26 1.13 1.13 0 0 0 0-2.26ZM18.9 18h-1.94v-4.64c0-1.11-.02-2.54-1.55-2.54-1.56 0-1.8 1.21-1.8 2.46V18h-1.93V9.25h1.85v1.19h.03c.26-.49.89-1.2 2.3-1.2 2.46 0 2.91 1.62 2.91 3.72V18Z" fill="#fff" />
     </svg>
   )
 }
@@ -51,7 +53,7 @@ export function SocialActions({ items, className }: { items: Item[]; className?:
               itemClass
             )}
           >
-            <Icon className={cn("size-6", label === "LinkedIn" && "size-")} />
+            <Icon className={cn("size-6")} />
           </Link>
         )
       )}

@@ -1,6 +1,5 @@
 import { site } from "@/config/site"
 import SectionHeader from "@/components/SectionHeader"
-import { Button } from "@/components/ui/button"
 import { DefaultSocialActions } from "@/components/SocialActions"
 import Reveal from "@/components/motion/Reveal"
 import ShimmerText from "@/components/motion/ShimmerText"

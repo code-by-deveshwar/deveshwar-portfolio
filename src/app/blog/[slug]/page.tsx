@@ -5,16 +5,18 @@ export function generateStaticParams() {
   return site.posts.map((p) => ({ slug: p.slug }))
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = site.posts.find((p) => p.slug === params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = site.posts.find((p) => p.slug === slug)
   return {
     title: post ? post.title : "Post",
     description: post?.summary,
   }
 }
 
-export default function PostPage({ params }: { params: { slug: string } }) {
-  const post = site.posts.find((p) => p.slug === params.slug)
+export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const post = site.posts.find((p) => p.slug === slug)
   if (!post) return notFound()
 
   return (
@@ -27,4 +29,3 @@ export default function PostPage({ params }: { params: { slug: string } }) {
     </main>
   )
 }
-

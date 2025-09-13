@@ -33,7 +33,7 @@ export default function FooterProfile() {
             <div className="rounded-[28px] p-1 bg-white/15">
               <div className="rounded-[24px] p-1 bg-black/30">
                 <Avatar className="size-28 md:size-32 rounded-[20px]">
-                  <AvatarImage src={(site as any).avatar} alt={site.name} />
+                  <AvatarImage src={site.avatar} alt={site.name} />
                   <AvatarFallback className="rounded-[20px] text-lg font-semibold">
                     {initials(site.name)}
                   </AvatarFallback>

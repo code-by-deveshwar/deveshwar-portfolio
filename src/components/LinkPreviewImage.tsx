@@ -28,7 +28,7 @@ export default function LinkPreviewImage({ url, className = "", alt = "Preview" 
         if (data && (data.image || data.screenshot)) {
           setPrimary(data.image || data.screenshot)
         }
-      } catch (_) {
+      } catch {
         // ignore network/API errors; we will use fallbacks
       } finally {
         if (active) setLoading(false)
