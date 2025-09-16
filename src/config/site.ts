@@ -46,7 +46,7 @@ export const site = {
   phone: "+91-9541080795",
   avatar: "",
   socials: {
-    github: "https://github.com/your-handle",
+    github: "https://github.com/code-by-deveshwar",
     linkedin: "https://www.linkedin.com/in/deveshwar-zard/",
     resume: "/resume.pdf",
   },

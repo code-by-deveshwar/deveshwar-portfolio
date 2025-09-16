@@ -78,10 +78,13 @@ export default function FooterProfile() {
 }
 
 function Pill({ href, icon, label, wide }: { href: string; icon: React.ReactNode; label: string; wide?: boolean }) {
+  const isExternal = href.startsWith("http://") || href.startsWith("https://")
   return (
     <span className="bg-gradient-to-r from-neutral-100/10 to-white/10 rounded-full p-[1px]">
       <Link
         href={href}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
         className={`inline-flex items-center gap-2 rounded-full bg-neutral-900 px-4 ${wide ? "h-11" : "h-10"} text-sm hover:bg-neutral-800 transition-colors`}
       >
         {icon}

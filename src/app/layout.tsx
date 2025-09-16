@@ -25,6 +25,10 @@ const interText = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://example.com"),
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+  },
   title: {
     default: "Deveshwar • Portfolio",
     template: "%s • Deveshwar",
